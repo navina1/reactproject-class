@@ -3,6 +3,12 @@ import user from "@testing-library/user-event";
 import Counter from "./Counter";
 
 describe("Counter Component", () => {
+    beforeEach(()=>{
+        console.log("before each")
+    })
+    afterEach(()=>{
+        console.log("After each");
+    })
   test('Render counter properly', () => { 
     render(<Counter />);
     const counterElement = screen.getByRole("heading");

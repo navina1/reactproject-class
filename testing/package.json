@@ -16,7 +16,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "coverage": "react-scripts tests --env=jsdom --watchAll=false --coverage"
+    "coverage": "react-scripts test --env=jsdom --watchAll=false --coverage"
   },
   "eslintConfig": {
     "extends": [
@@ -35,5 +35,15 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "jest":{
+    "coverageThreshold":{
+      "global":{
+        "branches":80,
+        "functions":90,
+        "lines":90,
+        "statements":80
+      }
+    }
   }
 }
