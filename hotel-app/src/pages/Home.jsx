@@ -13,20 +13,21 @@ function Home() {
     const HOTELS_PER_PAGE=5;
     const fetchHotels = async () => {
         const { data } = await getHotels();
-        setHotels(data)
+        setHotels(data);
+        setFilteredHotel(data);
         return data;
     }
     const { isLoading, data, error } = useQuery("hotels", fetchHotels);
     //Pagination
     const startIndex=(page-1) * HOTELS_PER_PAGE;
     const endIndex= page * HOTELS_PER_PAGE - 1;
-    const paginatedHotels=hotels.slice(startIndex,endIndex+1);
-    const totalHotels=hotels.length;
+    const paginatedHotels=filteredHotel.slice(startIndex,endIndex+1);
+    const totalHotels=filteredHotel.length;
     const totalPages=Math.ceil(totalHotels/HOTELS_PER_PAGE);
 
     return (
         <>
-            <Navbar />
+            <Navbar hotels={hotels} setFilteredHotels={setFilteredHotel} />
             <Container maxWidth="lg">
                 <Grid container spacing={2} marginTop={2}>
                     {isLoading ? (
