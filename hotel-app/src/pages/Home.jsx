@@ -1,6 +1,6 @@
 import React from 'react'
 import Navbar from '../components/Navbar';
-import { Container, Grid, Pagination } from '@mui/material';
+import { Container, Grid, Pagination, Skeleton } from '@mui/material';
 import { useState } from 'react';
 import { getHotels } from '../api/request';
 import { useQuery } from "react-query";
@@ -29,12 +29,21 @@ function Home() {
             <Navbar />
             <Container maxWidth="lg">
                 <Grid container spacing={2} marginTop={2}>
-                    {paginatedHotels.length > 0 && (
-                        paginatedHotels?.map((hotel, index) =>
-                        (<Grid item key={hotel.id} xs={12} sm={6} md={4} lg={4}>
-                            <HotelCard hotel={hotel} />
-                        </Grid>))
+                    {isLoading ? (
+                        Array.from({ length: HOTELS_PER_PAGE }).map((_, index) => (
+                            <Grid item key={index} xs={12} sm={6} md={4} lg={4}>
+                              <Skeleton variant="rectangular" height={200} />
+                            </Grid>
+                          ))
+                    ):(
+                        paginatedHotels.length > 0 && (
+                            paginatedHotels?.map((hotel, index) =>
+                            (<Grid item key={hotel.id} xs={12} sm={6} md={4} lg={4}>
+                                <HotelCard hotel={hotel} />
+                            </Grid>))
+                        )
                     )}
+                    
                 </Grid>
                 <Pagination
                  page={page} 
