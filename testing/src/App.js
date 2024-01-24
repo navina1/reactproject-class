@@ -1,12 +1,15 @@
 import logo from './logo.svg';
 import './App.css';
-import Greet from './components/greet/Greet';
+import Greet from './Component/Greet/Greet';
+import Counter from './Component/counter/Counter';
 
 function App() {
   return (
-    <div className="App">
+    <>
+      <Greet name={"navina"}/>
       <Greet/>
-    </div>
+      <Counter/>
+    </>
   );
 }
 
